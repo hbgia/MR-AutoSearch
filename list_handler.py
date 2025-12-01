@@ -4,7 +4,7 @@ def choose_keywords(n: int, keywords:list) -> list:
     random.shuffle(keywords)
     if keywords.__len__() < n:
         print("Requested Searching reps is larger than available keywords.")
-        print("Available Keywords:", keywords.__len__())
+        print("Available keywords:", keywords.__len__())
         print("Requested reps:    ", n)
         while True:
             user_choice = input("Would you like to continue?(y/n) ")
