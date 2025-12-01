@@ -1,12 +1,6 @@
 from pynput.keyboard import Controller, Key
-from pynput.mouse import Controller as MouseController
 kb = Controller()
-mouse = MouseController()
 
-
-# import subprocess
-# def open_MS_Edge():
-#     subprocess.Popen(["msedge"])
 import os
 import shutil
 import subprocess
