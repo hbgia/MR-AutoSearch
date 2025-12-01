@@ -61,3 +61,20 @@ def reps_load(filepath: str) -> int:
     except Exception as e:
         print(f"Error reading file: {e}")
         return []
+
+from datetime import datetime
+def logs_searches(searched_words: list[str], filepath: str) -> bool:
+    path = Path(filepath)
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        count = searched_words.__len__()
+        with path.open("w", encoding="utf-8") as f:
+            f.write(f"{now}\n")
+            f.write(f"Total searches: {count}\n")
+            for w in searched_words:
+                f.write(f"{str(w).rstrip(chr(10)).rstrip(chr(13))}\n")
+        return True
+    except Exception as e:
+        print(f"[LOG WRITE ERROR] {e}")
+        return False
