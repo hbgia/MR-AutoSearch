@@ -22,6 +22,7 @@ def main():
     new_edge_window.terminate
     file_handler.logs_searches(chosen_keywords, "logs.txt")
     device_input_control.close_tab()
+    print("Done searching")
     
 if __name__ == "__main__":
     main()
