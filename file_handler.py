@@ -1,29 +1,32 @@
 from pathlib import Path
 from typing import List
 import mimetypes
-import sys
 
 def is_text_file(filepath: str) -> bool:
     """
     Return True if filepath has a .txt extension (case-insensitive), otherwise False.
     """
-    path = Path(filepath)
-    return path.suffix.lower() == ".txt"
+    return Path(filepath).suffix.lower() == ".txt"
 
 
-def general_error_free(filepath: str) -> bool:
-    path = Path(filepath)
-    if not path.exists():
-        print(f"File not found: {filepath}")
+def can_read_file(filepath: str) -> bool:
+    """
+    Returns False if there is any problem reading file or the file does NOT has .txt extention. Also prints the error to console.
+    """
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            f.read()
+        
+        if not is_text_file(filepath):
+            ext = Path(filepath).suffix.lower()
+            mime = mimetypes.guess_type(filepath)[0]
+            actual = mime if mime else (ext if ext else "no extension")
+            print(f"[FILE READING ERROR] Actual file type: '{actual}'. Please choose a .txt file.")    
+        return True
+    
+    except Exception as e:
+        print(f"[FILE READING ERROR] {e}")
         return False
-
-    if not is_text_file(filepath):
-        ext = path.suffix.lower()
-        mime = mimetypes.guess_type(filepath)[0]
-        actual = mime if mime else (ext if ext else "no extension")
-        print(f"Actual file type: '{actual}'. Please choose a .txt file.")
-        return False
-    return True
 
 
 def keywords_load(filepath: str) -> List[str]:
@@ -33,7 +36,7 @@ def keywords_load(filepath: str) -> List[str]:
     """
     path = Path(filepath)
     
-    if not general_error_free(filepath):
+    if not can_read_file(filepath):
         return []
 
     try:
@@ -46,7 +49,7 @@ def keywords_load(filepath: str) -> List[str]:
 def reps_load(filepath: str) -> int:
     path = Path(filepath)
     
-    if not general_error_free(filepath):
+    if not can_read_file(filepath):
         return []
 
     try:
@@ -58,3 +61,20 @@ def reps_load(filepath: str) -> int:
     except Exception as e:
         print(f"Error reading file: {e}")
         return []
+
+from datetime import datetime
+def logs_searches(searched_words: list[str], filepath: str) -> bool:
+    path = Path(filepath)
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        count = searched_words.__len__()
+        with path.open("w", encoding="utf-8") as f:
+            f.write(f"Date:           {now}\n")
+            f.write(f"Total searches: {count}\n")
+            for w in searched_words:
+                f.write(f"{str(w).rstrip(chr(10)).rstrip(chr(13))}\n")
+        return True
+    except Exception as e:
+        print(f"[LOG WRITE ERROR] {e}")
+        return False
