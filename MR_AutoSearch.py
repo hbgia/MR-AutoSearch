@@ -19,6 +19,7 @@ def main():
         time.sleep(10)
 
     new_edge_window.terminate
+    device_input_control.close_tab()
     
 if __name__ == "__main__":
     main()
