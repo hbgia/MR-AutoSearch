@@ -70,7 +70,7 @@ def logs_searches(searched_words: list[str], filepath: str) -> bool:
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         count = searched_words.__len__()
         with path.open("w", encoding="utf-8") as f:
-            f.write(f"{now}\n")
+            f.write(f"Date:           {now}\n")
             f.write(f"Total searches: {count}\n")
             for w in searched_words:
                 f.write(f"{str(w).rstrip(chr(10)).rstrip(chr(13))}\n")
