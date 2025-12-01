@@ -67,3 +67,11 @@ def type_each_char(text:str):
 
 def press_enter():
     kb.press(Key.enter)
+
+
+
+def close_tab():
+    kb.press(Key.ctrl)
+    kb.press('w')
+    kb.release('w')
+    kb.release(Key.ctrl)
