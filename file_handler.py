@@ -1,7 +1,6 @@
 from pathlib import Path
 from typing import List
 import mimetypes
-import sys
 
 def is_text_file(filepath: str) -> bool:
     """
