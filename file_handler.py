@@ -70,10 +70,12 @@ def logs_searches(searched_words: list[str], filepath: str) -> bool:
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         count = searched_words.__len__()
         with path.open("w", encoding="utf-8") as f:
-            f.write(f"Date:           {now}\n")
+            f.write(f"Date: {now}\n")
             f.write(f"Total searches: {count}\n")
-            for w in searched_words:
-                f.write(f"{str(w).rstrip(chr(10)).rstrip(chr(13))}\n")
+            f.write("================================\n")
+            for i in range(len(searched_words)):
+                w = searched_words[i]
+                f.write(f"({i + 1}) {str(w).rstrip(chr(10)).rstrip(chr(13))}\n")
         return True
     except Exception as e:
         print(f"[LOG WRITE ERROR] {e}")
