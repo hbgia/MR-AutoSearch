@@ -17,6 +17,7 @@ def main():
     for i in range(len(chosen_keywords)):
         print(f"({i + 1}) Searching {chosen_keywords[i]}...")
         device_input_control.start_search_in_address_bar()
+        time.sleep(0.5) # Wait for the browser to respond
         device_input_control.type_each_char(chosen_keywords[i])
         device_input_control.press_enter()
         time.sleep(10)
