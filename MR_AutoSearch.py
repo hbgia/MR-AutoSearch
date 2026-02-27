@@ -20,10 +20,10 @@ def main():
         time.sleep(0.5) # Wait for the browser to respond
         device_input_control.type_each_char(chosen_keywords[i])
         device_input_control.press_enter()
+        file_handler.logs_search(chosen_keywords[i], "logs.txt")
         time.sleep(10)
 
     new_edge_window.terminate
-    file_handler.logs_searches(chosen_keywords, "logs.txt")
     device_input_control.close_tab()
     print("=========== DONE SEARCHING ===========")
     
