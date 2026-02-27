@@ -45,22 +45,6 @@ def keywords_load(filepath: str) -> List[str]:
     except Exception as e:
         print(f"Error reading file: {e}")
         return []
-    
-def reps_load(filepath: str) -> int:
-    path = Path(filepath)
-    
-    if not can_read_file(filepath):
-        return []
-
-    try:
-        with path.open("r", encoding="utf-8") as f:
-            first_line = f.readline()
-        first_line = first_line.strip()
-        return int(first_line)
-    
-    except Exception as e:
-        print(f"Error reading file: {e}")
-        return []
 
 from datetime import datetime
 def logs_search(searched_word: str, filepath: str) -> bool:

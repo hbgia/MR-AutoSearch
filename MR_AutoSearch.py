@@ -1,12 +1,13 @@
 import device_input_control
 import file_handler
 import list_handler
+import utils
 import time
 
 def main():
     searching_keywords = file_handler.keywords_load("inputs/search_keywords.txt")
-    reps = file_handler.reps_load("inputs/search_reps.txt")
-    
+    reps = utils.console_try_until_get_int("Enter searching reps: ") 
+        
     chosen_keywords = list_handler.choose_keywords(reps, searching_keywords)
     print(f"Prepared {chosen_keywords.__len__()} keyword(s).")
     
