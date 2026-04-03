@@ -46,16 +46,16 @@ def keywords_load(filepath: str) -> List[str]:
         print(f"Error reading file: {e}")
         return []
 
-from datetime import datetime
-def logs_search(searched_word: str, filepath: str) -> bool:
-    path = Path(filepath)
-    try:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        with path.open("a", encoding="utf-8") as f:
-            w = searched_word
-            f.write(f"[{now}] {w}\n")
-        return True
-    except Exception as e:
-        print(f"[LOG WRITE ERROR] {e}")
-        return False
+# from datetime import datetime
+# def logs_search(searched_word: str, filepath: str) -> bool:
+#     path = Path(filepath)
+#     try:
+#         path.parent.mkdir(parents=True, exist_ok=True)
+#         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+#         with path.open("a", encoding="utf-8") as f:
+#             w = searched_word
+#             f.write(f"[{now}] {w}\n")
+#         return True
+#     except Exception as e:
+#         print(f"[LOG WRITE ERROR] {e}")
+#         return False
