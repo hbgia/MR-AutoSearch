@@ -1,14 +1,13 @@
 import device_input_control
-import file_handler
 import list_handler
+import search_keywords
 import utils
 import time
 
 def main():
-    searching_keywords = file_handler.keywords_load("inputs/search_keywords.txt")
     reps = utils.console_try_until_get_int("Enter searching reps: ") 
         
-    chosen_keywords = list_handler.choose_keywords(reps, searching_keywords)
+    chosen_keywords = list_handler.choose_keywords(reps, search_keywords.search_keywords)
     print(f"Prepared {chosen_keywords.__len__()} keyword(s).")
     
     new_edge_window = device_input_control.open_ms_edge()
